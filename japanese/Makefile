@@ -174,6 +174,7 @@
     SUBDIR += mypaedia-fpw-package
     SUBDIR += namazu
     SUBDIR += namazu2
+    SUBDIR += narcissu2
     SUBDIR += navi2ch
     SUBDIR += ne
     SUBDIR += nethack34
