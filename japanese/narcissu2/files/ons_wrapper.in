@@ -1,0 +1,13 @@
+#! /bin/sh
+
+# ONScripter stores saves and configuration files in game data directory.
+# As the directory is read-only we mirror it under ~/.onscripter using
+# symlinks and run the game from there.
+
+mkdir -p ~/.onscripter/${0##*/}
+if cd ~/.onscripter/${0##*/}; then
+    ln -fs %%DATADIR%%/* .
+    onscripter "$@"
+else
+    echo "Cannot cd to ~/.onscripter/${0##*/}"
+fi
