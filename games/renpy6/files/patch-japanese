@@ -1,0 +1,32 @@
+$ katawa-shoujo
+pygame 1.9.6
+Hello from the pygame community. https://www.pygame.org/contribute.html
+UnicodeDecodeError('ascii', '\xe3\x81\x8b\xe3\x81\x9f\xe3\x82\x8f\xe5\xb0\x91\xe5\xa5\xb3', 0, 1, 'ordinal not in range(128)')
+
+Full traceback:
+  File "/usr/local/share/renpy/renpy/bootstrap.py", line 289, in bootstrap
+    renpy.main.main()
+  File "/usr/local/share/renpy/renpy/main.py", line 341, in main
+    renpy.display.core.Interface()
+  File "/usr/local/share/renpy/renpy/display/core.py", line 1405, in __init__
+    self.set_mode()
+  File "/usr/local/share/renpy/renpy/display/core.py", line 1637, in set_mode
+    if draw.set_mode(virtual_size, physical_size, fullscreen):
+  File "gldraw.pyx", line 179, in renpy.gl.gldraw.GLDraw.set_mode
+  File "/usr/local/share/renpy/renpy/display/core.py", line 1448, in post_init
+    self.set_window_caption(force=True)
+  File "/usr/local/share/renpy/renpy/display/core.py", line 1497, in set_window_caption
+    pygame.display.set_caption(caption.encode("utf-8"))
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xe3 in position 0: ordinal not in range(128)
+
+--- renpy/display/core.py.orig	2014-10-16 23:18:33 UTC
++++ renpy/display/core.py
+@@ -1494,7 +1494,7 @@ class Interface(object):
+             return
+ 
+         self.window_caption = caption
+-        pygame.display.set_caption(caption.encode("utf-8"))
++        pygame.display.set_caption(caption)
+ 
+     def iconify(self):
+         pygame.display.iconify()

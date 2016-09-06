@@ -838,6 +838,7 @@
     SUBDIR += regoth
     SUBDIR += reminiscence
     SUBDIR += renpy
+    SUBDIR += renpy6
     SUBDIR += rescue
     SUBDIR += residualvm
     SUBDIR += retroarch
