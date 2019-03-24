@@ -4605,6 +4605,7 @@
     SUBDIR += py-iniconfig
     SUBDIR += py-inifile
     SUBDIR += py-iniparse
+    SUBDIR += py-inotify_simple
     SUBDIR += py-installer
     SUBDIR += py-intbitset
     SUBDIR += py-intervals

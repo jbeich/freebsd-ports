@@ -487,6 +487,7 @@
     SUBDIR += xkbutils
     SUBDIR += xkeyboard-config
     SUBDIR += xkeycaps
+    SUBDIR += xkeysnail
     SUBDIR += xkeywrap
     SUBDIR += xkill
     SUBDIR += xload
