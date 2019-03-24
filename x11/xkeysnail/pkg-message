@@ -1,0 +1,11 @@
+[
+{ type: install
+  message: <<EOM
+Known issues:
+- On FreeBSD 11.* kernel needs to be rebuilt with EVDEV_SUPPORT
+- On FreeBSD 11.* configure xorg-server to use xf86-input-libinput
+- On FreeBSD >= 13.0 multimedia keys are supported via hcons(4)
+- On FreeBSD < 13.0 multimedia keys are supported via sysutils/iichid
+EOM
+}
+]
