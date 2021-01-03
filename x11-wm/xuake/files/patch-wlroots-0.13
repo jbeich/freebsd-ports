@@ -1,0 +1,78 @@
+key.c:383:25: error: use of undeclared identifier 'WLR_KEY_PRESSED'
+    if (event->state == WLR_KEY_PRESSED) {
+                        ^
+xuake.c:397:64: error: too many arguments to function call, expected single argument 'display', have 2 arguments
+    server.backend = wlr_backend_autocreate(server.wl_display, NULL);
+                     ~~~~~~~~~~~~~~~~~~~~~~                    ^~~~
+
+[render/gles2/texture.c:162] Unsupported pixel format 0x0
+
+--- key.c.orig	2021-01-01 22:37:09 UTC
++++ key.c
+@@ -371,7 +380,7 @@ keyboard_handle_key(struct wl_listener *listener, void
+     //printf("\n");
+     if (nsyms == 0)
+         return;
+-    if (event->state == WLR_KEY_PRESSED) {
++    if (event->state == WL_KEYBOARD_KEY_STATE_PRESSED) {
+         /* XXX: This is missing corner cases where some of the keysyms are handled
+          * by handle_keybinding() and some aren't.
+          *
+--- output.c.orig	2021-01-01 22:37:09 UTC
++++ output.c
+@@ -2,6 +2,8 @@
+ #include <stdlib.h>
+ #include <unistd.h>
+ 
++#include <drm_fourcc.h>
++
+ #include "xuake.h"
+ #include "readpng.h"
+ #include "key.h"
+@@ -50,7 +52,7 @@ render_single_decotex(struct xuake_server *server, cha
+         else
+             buf[i] = bg;
+ 
+-    return wlr_texture_from_pixels(server->renderer, WL_SHM_FORMAT_ARGB8888, nibs*XUAKE_PIXEL_BYTES, nibs, 4, buf);
++    return wlr_texture_from_pixels(server->renderer, DRM_FORMAT_ARGB8888, nibs*XUAKE_PIXEL_BYTES, nibs, 4, buf);
+ }
+ 
+ 
+--- xuake.c.orig	2021-01-01 22:37:09 UTC
++++ xuake.c
+@@ -3,6 +3,8 @@
+ #include <stdlib.h>
+ #include <unistd.h>
+ 
++#include <drm_fourcc.h>
++
+ #include "xuake.h"
+ #include "readpng.h"
+ #include "ft.h"
+@@ -102,7 +104,7 @@ init_xkterm(struct xuake_server *server)
+ 
+     xkterm_render(&server->xkt, server->xkt.pixw, server->xkt.pixh, server->xkt.data);
+ 
+-    server->xkt.texture = wlr_texture_from_pixels(server->renderer, WL_SHM_FORMAT_ARGB8888, server->xkt.pixw*XUAKE_PIXEL_BYTES,
++    server->xkt.texture = wlr_texture_from_pixels(server->renderer, DRM_FORMAT_ARGB8888, server->xkt.pixw*XUAKE_PIXEL_BYTES,
+         server->xkt.pixw, server->xkt.pixh, server->xkt.data);
+ 
+     server->widget.width = widget_width;
+@@ -110,7 +112,7 @@ init_xkterm(struct xuake_server *server)
+         server->widget.height = h;
+         server->widget.data = init_widgets(server);
+         render_widgets(server->widget.width, server->widget.height, server->widget.data);
+-        server->widget.texture = wlr_texture_from_pixels(server->renderer, WL_SHM_FORMAT_ARGB8888,
++        server->widget.texture = wlr_texture_from_pixels(server->renderer, DRM_FORMAT_ARGB8888,
+             server->widget.width*XUAKE_PIXEL_BYTES, server->widget.width, server->widget.height, server->widget.data);
+     }
+ }
+@@ -394,7 +396,7 @@ main(int argc, char *argv[])
+      * backend uses the renderer, for example, to fall back to software cursors
+      * if the backend does not support hardware cursors (some older GPUs
+      * don't). */
+-    server.backend = wlr_backend_autocreate(server.wl_display, NULL);
++    server.backend = wlr_backend_autocreate(server.wl_display);
+ 
+     if (wlr_multi_is_empty(server.backend)) {
+         printf("Backend is empty!\n");

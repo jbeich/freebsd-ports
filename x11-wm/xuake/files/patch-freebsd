@@ -1,0 +1,53 @@
+--- key.c.orig	2021-01-01 22:37:09 UTC
++++ key.c
+@@ -2,6 +2,15 @@
+ #include "xuake.h"
+ #include "key.h"
+ 
++#ifndef CLOCK_MONOTONIC_COARSE
++#ifdef CLOCK_MONOTONIC_FAST
++// DragonFly and FreeBSD
++#define CLOCK_MONOTONIC_COARSE CLOCK_MONOTONIC_FAST
++#else
++#define CLOCK_MONOTONIC_COARSE CLOCK_MONOTONIC
++#endif
++#endif
++
+ void
+ xkutil_move_view(struct xuake_server *server, struct xuake_view *view, int new_ws)
+ {
+--- term.c.orig	2021-01-01 22:37:09 UTC
++++ term.c
+@@ -3,8 +3,13 @@
+ #include <string.h>
+ #include <xkbcommon/xkbcommon.h>
+ #include <unistd.h>
++#if defined(__DragonFly__) || defined(__FreeBSD__)
++#include <libutil.h>
++#elif defined(__OpenBSD__) || defined(__NetBSD__)
++#include <util.h>
++#else
+ #include <pty.h>
+-#include <utmp.h>
++#endif
+ #include <ctype.h>
+ #include <fcntl.h>
+ #include <termios.h>
+--- xkterm.c.orig	2021-01-01 22:37:09 UTC
++++ xkterm.c
+@@ -23,6 +23,15 @@
+ #include "ft.h"
+ #include "term.h"
+ 
++#ifndef CLOCK_MONOTONIC_COARSE
++#ifdef CLOCK_MONOTONIC_FAST
++// DragonFly and FreeBSD
++#define CLOCK_MONOTONIC_COARSE CLOCK_MONOTONIC_FAST
++#else
++#define CLOCK_MONOTONIC_COARSE CLOCK_MONOTONIC
++#endif
++#endif
++
+ struct xuake_server;
+ #include "xklua.h"
+ 

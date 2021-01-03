@@ -123,6 +123,7 @@
     SUBDIR += xfce4-panel-profiles
     SUBDIR += xfce4-session
     SUBDIR += xfce4-wm
+    SUBDIR += xuake
     SUBDIR += yeahwm
 
 .include <bsd.port.subdir.mk>

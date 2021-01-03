@@ -1,0 +1,21 @@
+[
+{ type: install
+  message: <<EOM
+For better compatibility consider adjusting termcap(5).
+
+$ cat <<\EOF >>/etc/termcap
+xkterm|xuake terminal emulator:\
+	:am:ut:\
+	:Co#8:co#133:it#8:li#50:\
+	:AB=\E[4%dm:AF=\E[3%dm:AL=\E[%dL:DC=\E[%dP:DL=\E[%dM:\
+	:DO=\E[%dB:LE=\E[%dD:RI=\E[%dC:Sb=\E[4%dm:Sf=\E[3%dm:\
+	:UP=\E[%dA:al=\E[L:bl=^G:cb=\E[1K:cd=\E[J:ce=\E[K:\
+	:cl=\E[H\E[2J:cm=\E[%i%d;%dH:cr=\r:cs=\E[%i%d;%dr:\
+	:dc=\E[P:dl=\E[M:do=\n:ec=\E[%dX:ho=\E[H:kb=^H:kd=\E[B:\
+	:kl=\E[D:kr=\E[C:ku=\E[A:le=^H:mb=\E[5m:md=\E[1m:me=\E[m:\
+	:mr=\E[7m:nd=\E[C:sf=\n:sr=\EM:ta=^I:up=\E[A:ve=\E[?25h:\
+	:vi=\E[?25l:vs=\E[?25h:
+EOF
+EOM
+}
+]

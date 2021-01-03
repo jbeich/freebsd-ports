@@ -1,0 +1,28 @@
+In file included from xuake.c:8:
+./xuake.h:26:10: fatal error: 'wlr/types/wlr_gtk_primary_selection.h' file not found
+#include <wlr/types/wlr_gtk_primary_selection.h>
+         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+xuake.c:514:5: error: implicit declaration of function 'wlr_gtk_primary_selection_device_manager_create' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
+    wlr_gtk_primary_selection_device_manager_create(server.wl_display);
+    ^
+
+--- xuake.h.orig	2021-01-01 22:37:09 UTC
++++ xuake.h
+@@ -23,7 +23,6 @@
+ #include <wlr/types/wlr_server_decoration.h>
+ #include <wlr/types/wlr_data_control_v1.h>
+ #include <wlr/types/wlr_primary_selection_v1.h>
+-#include <wlr/types/wlr_gtk_primary_selection.h>
+ #include <wlr/util/log.h>
+ #include <xkbcommon/xkbcommon.h>
+ //#include <libtsm.h>
+--- xuake.c.orig	2021-01-01 22:37:09 UTC
++++ xuake.c
+@@ -509,7 +511,6 @@ main(int argc, char *argv[])
+     wl_signal_add(&server.seat->events.set_selection, &server.set_selection);
+ 
+     wlr_primary_selection_v1_device_manager_create(server.wl_display);
+-    wlr_gtk_primary_selection_device_manager_create(server.wl_display);
+ 
+     /* Setup Xwayland support
+      */
