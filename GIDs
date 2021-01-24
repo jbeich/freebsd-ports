@@ -6,7 +6,7 @@ operator:*:5:amanda
 mail:*:6:postfix,clamav
 ftp:*:14:
 smmsp:*:25:
-video:*:44:lightdm
+video:*:44:lightdm,greeter
 bind:*:53:
 rdfdb:*:55:
 spamd:*:58:
@@ -247,7 +247,7 @@ netdata:*:302:
 # free: 305
 # free: 306
 # free: 307
-# free: 308
+greeter:*:308:
 # free: 309
 # free: 310
 # free: 311

@@ -252,7 +252,7 @@ netdata:*:302:302::0:0:NetData Daemon:/var/cache/netdata:/usr/sbin/nologin
 # free: 305
 # free: 306
 # free: 307
-# free: 308
+greeter:*:308:308::0:0:Greetd Login Managers:/nonexistent:/usr/sbin/nologin
 # free: 309
 # free: 310
 # free: 311
