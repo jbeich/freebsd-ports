@@ -1,0 +1,40 @@
+Alias prctl to procctl similar to seatd
+
+error[E0425]: cannot find function `prctl` in crate `libc`
+  --> greetd/src/session/prctl.rs:13:19
+   |
+13 |             libc::prctl(PRCTL_SET_PDEATHSIG, sig, 0, 0, 0)
+   |                   ^^^^^ not found in `libc`
+
+--- greetd/src/session/prctl.rs.orig	2020-12-22 11:29:48 UTC
++++ greetd/src/session/prctl.rs
+@@ -1,6 +1,15 @@
+ use nix::{errno::Errno, Result};
+ 
++#[cfg(target_os = "linux")]
+ pub const PRCTL_SET_PDEATHSIG: i32 = 1;
++#[cfg(target_os = "dragonfly")]
++pub const PROC_PDEATHSIG_CTL: i32 = 4;
++#[cfg(target_os = "freebsd")]
++pub const PROC_PDEATHSIG_CTL: i32 = 11;
++#[cfg(target_os = "dragonfly")]
++pub const SYS_procctl: i32 = 536;
++#[cfg(target_os = "freebsd")]
++pub const SYS_procctl: i32 = 544;
+ 
+ #[allow(non_camel_case_types)]
+ pub enum PrctlOption {
+@@ -9,8 +14,13 @@ pub enum PrctlOption {
+ 
+ pub fn prctl(option: PrctlOption) -> Result<()> {
+     Errno::result(match option {
++#[cfg(target_os = "linux")]
+         PrctlOption::SET_PDEATHSIG(sig) => unsafe {
+             libc::prctl(PRCTL_SET_PDEATHSIG, sig, 0, 0, 0)
++        },
++#[cfg(any(target_os = "dragonfly", target_os = "freebsd"))]
++        PrctlOption::SET_PDEATHSIG(sig) => unsafe {
++            libc::syscall(SYS_procctl, libc::P_PID, 0, PROC_PDEATHSIG_CTL, &sig)
+         },
+     })
+     .map(drop)

@@ -1,0 +1,12 @@
+greetd is a minimal and flexible login manager daemon that makes no
+assumptions about what you want to launch.
+
+Use gtkgreet to launch sway if you want a fully graphical session, or
+use agreety to launch a shell if you want a drop-in replacement for
+agetty(8) and login(1).
+
+If you can run it from your shell in a TTY, greetd can start it. If it
+can be taught to speak a simple JSON-based IPC protocol, then it can
+be a greeter.
+
+WWW: https://git.sr.ht/~kennylevinsen/greetd

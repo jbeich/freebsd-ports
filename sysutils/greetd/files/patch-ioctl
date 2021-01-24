@@ -1,0 +1,75 @@
+Add BSD-style VT ioctls
+
+$ greetd
+error: terminal: unable to set kernel display mode: ENOTTY: Not a typewriter
+unable to start greeter: terminal: unable to set kernel display mode: ENOTTY: Not a typewriter
+error: unable to reset VT: terminal: unable to set kernel display mode: ENOTTY: Not a typewriter
+
+--- greetd/src/terminal/ioctl.rs.orig	2020-12-22 11:29:48 UTC
++++ greetd/src/terminal/ioctl.rs
+@@ -1,21 +1,44 @@
+ use nix::{ioctl_read_bad, ioctl_write_int_bad, ioctl_write_ptr_bad};
+ 
++#[cfg(target_os = "linux")]
+ pub const KDSETMODE: u16 = 0x4B3A;
++#[cfg(not(target_os = "linux"))]
++pub const KDSETMODE: u32 = 0x20044B0A;
+ pub const KDTEXT: i32 = 0x00;
+ pub const KDGRAPHICS: i32 = 0x01;
++#[cfg(target_os = "linux")]
+ pub const VT_OPENQRY: u16 = 0x5600;
++#[cfg(not(target_os = "linux"))]
++pub const VT_OPENQRY: u32 = 0x40047601;
++#[cfg(target_os = "linux")]
+ pub const VT_SETMODE: u16 = 0x5602;
++#[cfg(not(target_os = "linux"))]
++pub const VT_SETMODE: u32 = 0x80087602;
++#[cfg(target_os = "linux")]
+ pub const VT_GETSTATE: u16 = 0x5603;
++#[cfg(not(target_os = "linux"))]
++pub const VT_GETSTATE: u32 = 0x40047607;
++#[cfg(target_os = "linux")]
+ pub const VT_ACTIVATE: u16 = 0x5606;
++#[cfg(not(target_os = "linux"))]
++pub const VT_ACTIVATE: u32 = 0x20047605;
++#[cfg(target_os = "linux")]
+ pub const VT_WAITACTIVE: u16 = 0x5607;
++#[cfg(not(target_os = "linux"))]
++pub const VT_WAITACTIVE: u32 = 0x20047606;
++#[cfg(target_os = "linux")]
+ pub const VT_SETACTIVATE: u16 = 0x560F;
+ pub const VT_AUTO: u8 = 0;
++#[cfg(target_os = "linux")]
+ pub const TIOCSCTTY: u16 = 0x540E;
++#[cfg(not(target_os = "linux"))]
++pub const TIOCSCTTY: u32 = 0x20007461;
+ 
+ ioctl_write_int_bad!(kd_setmode, KDSETMODE);
+ ioctl_write_int_bad!(vt_activate, VT_ACTIVATE);
+ ioctl_write_int_bad!(vt_waitactive, VT_WAITACTIVE);
+ ioctl_write_ptr_bad!(vt_setmode, VT_SETMODE, vt_mode);
++#[cfg(target_os = "linux")]
+ ioctl_write_ptr_bad!(vt_setactivate, VT_SETACTIVATE, vt_setactivate);
+ ioctl_read_bad!(vt_openqry, VT_OPENQRY, i64);
+ ioctl_read_bad!(vt_getstate, VT_GETSTATE, vt_state);
+--- greetd/src/terminal/mod.rs.orig	2020-12-22 11:29:48 UTC
++++ greetd/src/terminal/mod.rs
+@@ -135,7 +135,7 @@ impl Terminal {
+     /// VT_SETMODE followed by VT_ACTIVATE is used. For all platforms,
+     /// VT_WAITACTIVE is used to wait for shell activation.
+     pub fn vt_setactivate(&self, target_vt: usize) -> Result<(), Error> {
+-        if cfg!(target_os = "linux") {
++	#[cfg(target_os = "linux")] {
+             let arg = ioctl::vt_setactivate {
+                 console: target_vt as u64,
+                 mode: ioctl::vt_mode {
+@@ -152,7 +152,8 @@ impl Terminal {
+             if let Err(v) = unsafe { ioctl::vt_waitactive(self.fd, target_vt as i32) } {
+                 return Err(format!("terminal: unable to wait for activation: {}", v).into());
+             }
+-        } else {
++        }
++        #[cfg(not(target_os = "linux"))] {
+             self.vt_mode_clean()?;
+             self.vt_activate(target_vt)?;
+         }

@@ -240,7 +240,7 @@ _gmid:*:290:290::0:0:gmid daemon user:/var/empty:/usr/sbin/nologin
 # free: 293
 # free: 294
 # free: 295
-# free: 296
+greeter:*:296:296::0:0:Greetd Login Managers:/nonexistent:/usr/sbin/nologin
 # free: 297
 # free: 298
 owncast:*:299:299::0:0:& daemon:/nonexistent:/usr/sbin/nologin
