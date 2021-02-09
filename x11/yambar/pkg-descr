@@ -1,0 +1,6 @@
+yambar is a lightweight and configurable status panel (_bar_, for
+short) for X11 and Wayland, that goes to great lengths to be both CPU
+and battery efficient - polling is only done when absolutely
+necessary.
+
+WWW: https://codeberg.org/dnkl/yambar

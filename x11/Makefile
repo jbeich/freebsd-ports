@@ -571,6 +571,7 @@
     SUBDIR += yad
     SUBDIR += yakuake
     SUBDIR += yalias
+    SUBDIR += yambar
     SUBDIR += yeahconsole
     SUBDIR += yelp
     SUBDIR += zenity
