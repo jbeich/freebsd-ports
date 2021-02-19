@@ -1,6 +1,6 @@
-TIMESTAMP = 1619293372
-SHA256 (mirror-xserver-xorg-server-1.20.0-917-ga50a0e348_GH0.tar.gz) = c375f1df2d52e24f415b0d0b00a4c4420f240f3197e967ef715eb9e222042ef8
-SIZE (mirror-xserver-xorg-server-1.20.0-917-ga50a0e348_GH0.tar.gz) = 5848716
+TIMESTAMP = 1618324156
+SHA256 (mirror-xserver-xwayland-21.1.1_GH0.tar.gz) = f93c8a92d1f8eabde40713c7af01200a9040b3b73eafba54589732dac0a937fe
+SIZE (mirror-xserver-xwayland-21.1.1_GH0.tar.gz) = 1824608
 SHA256 (053544d4b5ec.patch) = b1fc94cca1c622664a3bf342345662f4e897813822057cbf6657df281bd60350
 SIZE (053544d4b5ec.patch) = 10291
 SHA256 (48a7bfeb4687.patch) = ae284622227b317085360f61553bae7fc21a57f4d2b6d4133a6ead0c93b47cee
