@@ -1,0 +1,18 @@
+src/application.cppe:92:10: error: no member named 'setlocale' in namespace 'std'
+    std::setlocale(LC_NUMERIC, "C");
+    ~~~~~^
+src/application.cpp:92:20: error: use of undeclared identifier 'LC_NUMERIC'
+    std::setlocale(LC_NUMERIC, "C");
+                   ^
+
+--- src/application.cpp
++++ src/application.cpp
+@@ -51,6 +51,8 @@
+ #include <KLocalizedString>
+ #include <KShortcutsDialog>
+ 
++#include <clocale>
++
+ static QApplication *createApplication(int &argc, char **argv, const QString &applicationName)
+ {
+     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
