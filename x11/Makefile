@@ -257,6 +257,7 @@
     SUBDIR += nwg-drawer
     SUBDIR += nwg-launchers
     SUBDIR += nwg-menu
+    SUBDIR += nwg-panel
     SUBDIR += nxcomp
     SUBDIR += p5-Clipboard
     SUBDIR += p5-X11-GUITest
