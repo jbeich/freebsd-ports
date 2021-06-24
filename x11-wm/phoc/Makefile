@@ -1,6 +1,7 @@
 PORTNAME=	phoc
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.8.0
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 
 PATCH_SITES=	${GL_SITE}/${GL_ACCOUNT}/${GL_PROJECT}/-/commit/
@@ -17,6 +18,8 @@ COMMENT=	Phone compositor
 
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+BROKEN=		fails to build after https://github.com/swaywm/wlroots/commit/57b70a478caf
 
 BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
 		wlroots>=0.14.0:x11-toolkits/wlroots

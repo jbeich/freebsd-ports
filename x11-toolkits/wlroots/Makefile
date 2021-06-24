@@ -1,5 +1,6 @@
 PORTNAME=	wlroots
-DISTVERSION=	0.14.1
+DISTVERSION=	0.14.0-81
+DISTVERSIONSUFFIX=	-ga47f89cf
 CATEGORIES=	x11-toolkits
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -33,11 +34,12 @@ MESON_ARGS=	-Dexamples=false -Drenderers=${RENDERERS:ts,}
 
 OPTIONS_DEFINE=	NVIDIA OPENGL VULKAN X11
 OPTIONS_DEFAULT=OPENGL VULKAN X11
+OPTIONS_EXCLUDE=VULKAN # needs rebase
 OPTIONS_SUB=	yes
 
 NVIDIA_DESC=		EGLStreams support for DRM backend (experimental)
 NVIDIA_PATCH_SITES=	https://github.com/danvd/${GH_PROJECT}-eglstreams/commit/:nvidia
-NVIDIA_PATCHFILES=	d9acdb6b21ec.patch:-p1:nvidia # https://github.com/swaywm/wlroots/pull/2769
+NVIDIA_PATCHFILES=	ef6216150ec1.patch:-p1:nvidia # https://github.com/swaywm/wlroots/pull/2769
 NVIDIA_IMPLIES=		OPENGL
 .if make(makesum)
 .MAKEFLAGS:		WITH+=NVIDIA
@@ -58,12 +60,10 @@ VULKAN_PATCHFILES+=	6885b636508c.patch:-p1 # https://github.com/swaywm/wlroots/p
 VULKAN_PATCHFILES+=	76534695a8d3.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
 VULKAN_PATCHFILES+=	445142e6a1f9.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
 VULKAN_PATCHFILES+=	f029ae1dac4b.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
-VULKAN_PATCHFILES+=	ad1fab0b3704.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
 VULKAN_PATCHFILES+=	4407b8e5a3a7.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
 VULKAN_PATCHFILES+=	e021c068d02f.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
 VULKAN_PATCHFILES+=	2cc710bda83c.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
 VULKAN_PATCHFILES+=	f0888604d6ce.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
-VULKAN_PATCHFILES+=	4fdd5efc9260.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
 VULKAN_PATCHFILES+=	59c119829f1c.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
 VULKAN_PATCHFILES+=	cfbd8aa6cf24.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
 VULKAN_PATCHFILES+=	3f6dbe428e8b.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
@@ -74,18 +74,17 @@ VULKAN_PATCHFILES+=	71f9f33e3bf2.patch:-p1 # https://github.com/swaywm/wlroots/p
 VULKAN_PATCHFILES+=	bd8c520dbd9a.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
 VULKAN_PATCHFILES+=	2d89dc9b8651.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
 VULKAN_PATCHFILES+=	8f9aeda46d8a.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
-VULKAN_PATCHFILES+=	e3d16970433f.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
 VULKAN_PATCHFILES+=	79f10d929b72.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
 VULKAN_PATCHFILES+=	1a16e8fc56a9.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
 VULKAN_PATCHFILES+=	dd039c56d93a.patch:-p1 # https://github.com/swaywm/wlroots/pull/2771
+VULKAN_PATCHFILES+=	a3ec0bfe1611.patch:-p1 # wlroots 0.15
 VULKAN_BUILD_DEPENDS=	glslangValidator:graphics/glslang \
 			vulkan-headers>0:graphics/vulkan-headers
 VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
 VULKAN_RUN_DEPENDS=	mesa-dri>0:graphics/mesa-dri
 VULKAN_USES=		localbase # Silence -Werror=undef in <vulkan/vulkan_core.h>
 VULKAN_VARS=		RENDERERS+=vulkan
-VULKAN_PLIST_FILES=	include/wlr/types/wlr_drm.h \
-			%%VULKAN%%include/wlr/render/vulkan.h
+VULKAN_PLIST_FILES=	%%VULKAN%%include/wlr/render/vulkan.h
 
 X11_LIB_DEPENDS=	libxcb-errors.so:x11/xcb-util-errors \
 			libxcb-render-util.so:x11/xcb-util-renderutil \

@@ -1,0 +1,28 @@
+./deps/zig-wlroots/src/wlroots.zig:155:9: error: zig-wlroots requires wlroots version 0.14
+        @compileError("zig-wlroots requires wlroots version 0.14");
+        ^
+
+--- deps/zig-wlroots/src/wlroots.zig.orig	2021-06-24 18:18:37 UTC
++++ deps/zig-wlroots/src/wlroots.zig
+@@ -151,7 +151,7 @@ pub const config = @import("config.zig");
+ pub const version = @import("version.zig");
+ 
+ comptime {
+-    if (version.major != 0 or version.minor != 14) {
+-        @compileError("zig-wlroots requires wlroots version 0.14");
++    if (version.major != 0 or version.minor != 15) {
++        @compileError("zig-wlroots requires wlroots version 0.15");
+     }
+ }
+--- deps/zig-wlroots/src/types/surface.zig.orig	2021-06-24 18:18:37 UTC
++++ deps/zig-wlroots/src/types/surface.zig
+@@ -25,7 +25,8 @@ pub const Surface = extern struct {
+         committed: u32,
+         seq: u32,
+ 
+-        buffer_resource: ?*wl.Buffer,
++        buffer: ?*wl.Buffer,
++        buffer_resource: ?*wl.Surface,
+         dx: i32,
+         dy: i32,
+         surface_damage: pixman.Region32,

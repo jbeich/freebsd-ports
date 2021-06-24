@@ -31,6 +31,7 @@ include/wlr/types/wlr_compositor.h
 include/wlr/types/wlr_cursor.h
 include/wlr/types/wlr_data_control_v1.h
 include/wlr/types/wlr_data_device.h
+include/wlr/types/wlr_drm.h
 include/wlr/types/wlr_export_dmabuf_v1.h
 include/wlr/types/wlr_foreign_toplevel_management_v1.h
 include/wlr/types/wlr_fullscreen_shell_v1.h
@@ -45,7 +46,6 @@ include/wlr/types/wlr_keyboard_group.h
 include/wlr/types/wlr_keyboard_shortcuts_inhibit_v1.h
 include/wlr/types/wlr_layer_shell_v1.h
 include/wlr/types/wlr_linux_dmabuf_v1.h
-include/wlr/types/wlr_list.h
 include/wlr/types/wlr_matrix.h
 include/wlr/types/wlr_output.h
 include/wlr/types/wlr_output_damage.h
@@ -81,6 +81,7 @@ include/wlr/types/wlr_xdg_foreign_v1.h
 include/wlr/types/wlr_xdg_foreign_v2.h
 include/wlr/types/wlr_xdg_output_v1.h
 include/wlr/types/wlr_xdg_shell.h
+include/wlr/util/box.h
 include/wlr/util/edges.h
 include/wlr/util/log.h
 include/wlr/util/region.h
@@ -88,5 +89,5 @@ include/wlr/version.h
 include/wlr/xcursor.h
 %%X11%%include/wlr/xwayland.h
 lib/libwlroots.so
-lib/libwlroots.so.9
+lib/libwlroots.so.10
 libdata/pkgconfig/wlroots.pc

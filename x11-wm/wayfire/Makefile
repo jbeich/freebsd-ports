@@ -1,10 +1,12 @@
 PORTNAME=	wayfire
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.7.2
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
 PATCHFILES+=	7b664f055249.patch:-p1 # https://github.com/WayfireWM/wayfire/pull/1230
+PATCHFILES+=	8096b2f6d190.patch:-p1 # wlroots 0.15
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	3D Wayland compositor

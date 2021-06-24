@@ -1,3 +1,5 @@
 TIMESTAMP = 1624910383
 SHA256 (johanmalm-labwc-0.3.0_GH0.tar.gz) = 035ae57bfdfa2b6453d07359cb0baf3c7ffd8192db63316a0f48db589c025787
 SIZE (johanmalm-labwc-0.3.0_GH0.tar.gz) = 69020
+SHA256 (a1ae16c1cf17.patch) = 4963630c31e7639b6140d7170911114546abf4a03dd728923d1d96fc5a2441f5
+SIZE (a1ae16c1cf17.patch) = 679
