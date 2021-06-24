@@ -1,16 +1,11 @@
 PORTNAME=	sway
-DISTVERSION=	1.6.1
-PORTREVISION=	1
+DISTVERSION=	1.6.1-46
+DISTVERSIONSUFFIX=	-g96102184
 CATEGORIES=	x11-wm
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
 PATCHFILES+=	cd9d1038a822.patch:-p1 # https://github.com/swaywm/sway/pull/5090
 PATCHFILES+=	f98ca3ab7ca1.patch:-p1 # https://github.com/swaywm/sway/pull/5090
-PATCHFILES+=	86b08e3257a4.patch:-p1 # WLR_RENDERER=vulkan
-PATCHFILES+=	c53ef023850f.patch:-p1 # wlroots 0.15
-PATCHFILES+=	fd36289faa86.patch:-p1 # wlroots 0.15
-PATCHFILES+=	95a51aefc38a.patch:-p1 # wlroots 0.15
-PATCHFILES+=	711403015921.patch:-p1 # wlroots 0.15
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	i3-compatible Wayland compositor
