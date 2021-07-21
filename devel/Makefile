@@ -7160,6 +7160,7 @@
     SUBDIR += websocketpp
     SUBDIR += websvn
     SUBDIR += wf-config
+    SUBDIR += wf-gsettings
     SUBDIR += wininfo
     SUBDIR += wizardkit
     SUBDIR += woff2
