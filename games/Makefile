@@ -418,6 +418,7 @@
     SUBDIR += kanagram
     SUBDIR += kapman
     SUBDIR += kartofel
+    SUBDIR += katawa-shoujo
     SUBDIR += katomic
     SUBDIR += kblackbox
     SUBDIR += kblocks
