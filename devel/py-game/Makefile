@@ -1,7 +1,8 @@
 # Created by: Maxim Sobolev <sobomax@FreeBSD.org>
 
 PORTNAME=	game
-DISTVERSION=	2.0.2
+DISTVERSION=	1.9.6
+PORTEPOCH=	1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,7 +12,7 @@ MAINTAINER=	wen@FreeBSD.org
 COMMENT=	Module designed to write games in Python
 
 LICENSE=	LGPL21
-LICENSE_FILE=	${WRKSRC}/docs/LGPL.txt
+LICENSE_FILE=	${WRKSRC}/docs/LGPL
 
 BUILD_DEPENDS=	v4l_compat>0:multimedia/v4l_compat
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
@@ -20,8 +21,8 @@ LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 RUN_DEPENDS=	${PYNUMPY} \
 		v4l_compat>0:multimedia/v4l_compat
 
-USES=		compiler:c11 jpeg pkgconfig python:3.6+ sdl xorg
-USE_SDL=	sdl2 ttf2 image2 mixer2
+USES=		jpeg pkgconfig python:3.6+ sdl xorg
+USE_SDL=	ttf image mixer
 USE_PYTHON=	autoplist distutils
 USE_XORG=	x11
 
@@ -35,9 +36,6 @@ OPTIONS_DEFINE=	DOCS EXAMPLES
 PORTDOCS=	*
 PORTEXAMPLES=	*
 
-post-extract:
-	@${RM} -r ${WRKSRC}/examples/.editorconfig
-
 post-install-EXAMPLES-on:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 
@@ -50,9 +48,5 @@ post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${TAR} -C ${WRKSRC}/docs -cf - . | \
 	${TAR} --unlink -C ${STAGEDIR}${DOCSDIR} -xf -
-
-post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/pygame/*.so
-	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/pygame/_sdl2/*.so
 
 .include <bsd.port.mk>
