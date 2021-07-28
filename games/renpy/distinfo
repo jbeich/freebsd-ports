@@ -1,3 +1,5 @@
-TIMESTAMP = 1638428552
-SHA256 (renpy-7.4.11-sdk.tar.bz2) = a73378f06a5925ea0d163b5825c298ed65dafb3d0cdccd9f34d7eace46adef1f
-SIZE (renpy-7.4.11-sdk.tar.bz2) = 111943054
+TIMESTAMP = 1522810708
+SHA256 (renpy-6.99.14.3-sdk.tar.bz2) = 5cbeea134a1907e8a14458248013e37f39f0c2d023c7b68f6ee2bee574f7a381
+SIZE (renpy-6.99.14.3-sdk.tar.bz2) = 101048525
+SHA256 (ba832e5e3d52.patch) = de3c1bb87bd24546576d0d20d516f55e1bccce7919ca396d716bce313a376e86
+SIZE (ba832e5e3d52.patch) = 1017
