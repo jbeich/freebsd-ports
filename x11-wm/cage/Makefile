@@ -1,14 +1,12 @@
 PORTNAME=	cage
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.1.4
-PORTREVISION=	3
+DISTVERSION=	0.1.4-37
+DISTVERSIONSUFFIX=	-g46778e6
 CATEGORIES=	x11-wm
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
 PATCHFILES+=	70ecdcb02ea0.patch:-p1 # https://github.com/Hjdskes/cage/pull/148
 PATCHFILES+=	31a3571a7798.patch:-p1 # https://github.com/Hjdskes/cage/pull/209
-PATCHFILES+=	1a3ab3eb3ad0.patch:-p1 # https://github.com/Hjdskes/cage/pull/198
-PATCHFILES+=	ee748fec3adf.patch:-p1 # https://github.com/Hjdskes/cage/pull/197
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Wayland kiosk
@@ -23,9 +21,8 @@ LIB_DEPENDS=	libwayland-server.so:graphics/wayland \
 		libwlroots.so:x11-toolkits/wlroots \
 		libxkbcommon.so:x11/libxkbcommon
 
-USES=		compiler:c11 meson pkgconfig xorg
+USES=		compiler:c11 meson pkgconfig
 USE_GITHUB=	yes
-USE_XORG=	pixman
 GH_ACCOUNT=	Hjdskes
 PLIST_FILES=	bin/${PORTNAME}
 
