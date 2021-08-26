@@ -2,13 +2,13 @@
 #include<bits/stdc++.h>
         ^~~~~~~~~~~~~~~
 
---- subprojects/windecor/deco-theme.cpp.orig	2020-12-14 07:51:43 UTC
+--- subprojects/windecor/deco-theme.cpp.orig	2021-09-08 20:44:48 UTC
 +++ subprojects/windecor/deco-theme.cpp
 @@ -8,7 +8,6 @@
  #include <sys/stat.h>
  #include <unistd.h>
  #include <fstream>
--#include<bits/stdc++.h>
+-#include <bits/stdc++.h>
  
- #include "INIReader.h"
- 
+ /** Create a z theme with the default parameters */
+ wf::windecor::decoration_theme_t::decoration_theme_t( std::string app_id, bool can_minimize, bool sticky ) {

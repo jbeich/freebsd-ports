@@ -1,9 +1,7 @@
-TIMESTAMP = 1611938557
-SHA256 (WayfireWM-wayfire-plugins-extra-v0.7.0_GH0.tar.gz) = e6377e7f2cd6b0a19fe0a256c819f801ee1d963524ed4e4930b702474bc04287
-SIZE (WayfireWM-wayfire-plugins-extra-v0.7.0_GH0.tar.gz) = 50385
+TIMESTAMP = 1638126233
+SHA256 (WayfireWM-wayfire-plugins-extra-v0.7.0-28-g21b5984_GH0.tar.gz) = 235fb74ac431d4235b6c99055431aa747489a23df318c5f3e102ea021681ef55
+SIZE (WayfireWM-wayfire-plugins-extra-v0.7.0-28-g21b5984_GH0.tar.gz) = 52701
 SHA256 (damianatorrpm-wayfire-plugin_dbus_interface-c705bf1_GH0.tar.gz) = 1eef146ea1077b69aa2ec1afdf51dc1a7831d7661c43b9b10ea68a39b7c50ac3
 SIZE (damianatorrpm-wayfire-plugin_dbus_interface-c705bf1_GH0.tar.gz) = 30095
-SHA256 (wayfireplugins-windecor-6ad31bfc10c5d39c0da7c68fa435064effad6381_GL0.tar.gz) = d3c739481faad2abc4391f165ebcd52a8fde1b062038bdbefcc1540a2dbbeed2
-SIZE (wayfireplugins-windecor-6ad31bfc10c5d39c0da7c68fa435064effad6381_GL0.tar.gz) = 16547
-SHA256 (a8eca14c44b9.patch) = 99dd5f51ff2a27bbff2165ee80707ea3954c25c438bef5969f85bedcda410c7f
-SIZE (a8eca14c44b9.patch) = 1059
+SHA256 (wayfireplugins-windecor-44b3ff72221a39f819c4a0bf62f68c3724208a06_GL0.tar.gz) = a9b9824d3729955b92952413e044421eec58e99c24aa0db38e0b1731b3371d1d
+SIZE (wayfireplugins-windecor-44b3ff72221a39f819c4a0bf62f68c3724208a06_GL0.tar.gz) = 36007
