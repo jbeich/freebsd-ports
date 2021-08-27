@@ -7210,6 +7210,7 @@
     SUBDIR += zeal
     SUBDIR += zfp
     SUBDIR += zls
+    SUBDIR += zls-devel
     SUBDIR += zookeeper
     SUBDIR += zpu-binutils
     SUBDIR += zpu-gcc

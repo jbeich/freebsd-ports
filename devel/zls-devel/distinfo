@@ -1,0 +1,7 @@
+TIMESTAMP = 1629060820
+SHA256 (zigtools-zls-0.1.0-257-g917ef4b_GH0.tar.gz) = 11dbef87c13732de86981a3b83736d67c02a421b4c5ba1f2b24142dff847e2cf
+SIZE (zigtools-zls-0.1.0-257-g917ef4b_GH0.tar.gz) = 220353
+SHA256 (ziglibs-known-folders-0.7.0-7-g3385a8b_GH0.tar.gz) = da500a790f9b16804c51ffdeb24a0c0de6eb00cf4d9140a46a8dd6ea583a5578
+SIZE (ziglibs-known-folders-0.7.0-7-g3385a8b_GH0.tar.gz) = 6421
+SHA256 (ziglibs-zinput-0.1.0-16-g95106b1_GH0.tar.gz) = 0a6a8d2ce8ff21c7dba1e2918e9b997764446748d699f6be1f33aeaf6dd7bf37
+SIZE (ziglibs-zinput-0.1.0-16-g95106b1_GH0.tar.gz) = 4009
