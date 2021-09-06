@@ -1,0 +1,10 @@
+This project aims to improve upon sway/i3wm features as a plugin for
+the Wayfire compositor.
+
+Currently, Swayfire implements most tiling features, optional
+decorations, and mouse resizing and moving of windows/tiled parents.
+
+NOTE: Swayfire is currently still in early development and not meant
+to be used yet.
+
+WWW: https://github.com/Javyre/swayfire

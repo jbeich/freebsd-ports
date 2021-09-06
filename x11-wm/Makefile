@@ -100,6 +100,7 @@
     SUBDIR += stumpwm
     SUBDIR += subtle
     SUBDIR += sway
+    SUBDIR += swayfire
     SUBDIR += tinywm
     SUBDIR += transset
     SUBDIR += treewm
