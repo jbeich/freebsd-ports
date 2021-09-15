@@ -1,6 +1,6 @@
 PORTNAME=	sway
 DISTVERSION=	1.6.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-wm
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -35,13 +35,20 @@ USE_XORG=	pixman
 GH_ACCOUNT=	swaywm
 MESON_ARGS=	-Dsd-bus-provider=basu
 
-OPTIONS_DEFINE=	BASU MANPAGES PIXBUF X11
-OPTIONS_DEFAULT=BASU MANPAGES PIXBUF X11
+OPTIONS_DEFINE=	BASU LTO MANPAGES PIXBUF X11
+OPTIONS_DEFAULT=BASU LTO MANPAGES PIXBUF X11
+OPTIONS_EXCLUDE_powerpc64=	${"${/usr/bin/ld:L:tA}"==/usr/bin/ld.lld:?LTO:} # LLVM bug 47353
 OPTIONS_SUB=	yes
 
 BASU_DESC=		Tray in swaybar via basu
 BASU_LIB_DEPENDS=	libbasu.so:devel/basu
 BASU_MESON_ENABLED=	tray
+
+LTO_MESON_TRUE=		b_lto
+.if exists(/usr/bin/ld.lld) && ${/usr/bin/ld:L:tA} != /usr/bin/ld.lld
+# --plugin isn't supported by old GNU ld.bfd in base
+LTO_LDFLAGS=		-fuse-ld=lld
+.endif
 
 MANPAGES_BUILD_DEPENDS=	scdoc>=1.9.2:textproc/scdoc
 MANPAGES_MESON_ENABLED=	man-pages
