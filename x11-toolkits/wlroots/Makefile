@@ -1,6 +1,6 @@
 PORTNAME=	wlroots
 DISTVERSION=	0.14.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -32,9 +32,16 @@ USE_LDCONFIG=	yes
 GH_ACCOUNT=	swaywm
 MESON_ARGS=	-Dexamples=false -Drenderers=${RENDERERS:ts,}
 
-OPTIONS_DEFINE=	NVIDIA OPENGL VULKAN X11
-OPTIONS_DEFAULT=OPENGL VULKAN X11
+OPTIONS_DEFINE=	LTO NVIDIA OPENGL VULKAN X11
+OPTIONS_DEFAULT=LTO OPENGL VULKAN X11
+OPTIONS_EXCLUDE_powerpc64=	${"${/usr/bin/ld:L:tA}"==/usr/bin/ld.lld:?LTO:} # LLVM bug 47353
 OPTIONS_SUB=	yes
+
+LTO_MESON_TRUE=		b_lto
+.if exists(/usr/bin/ld.lld) && ${/usr/bin/ld:L:tA} != /usr/bin/ld.lld
+# --plugin isn't supported by old GNU ld.bfd in base
+LTO_LDFLAGS=		-fuse-ld=lld
+.endif
 
 NVIDIA_DESC=		EGLStreams support for DRM backend (experimental)
 NVIDIA_PATCH_SITES=	https://github.com/danvd/${GH_PROJECT}-eglstreams/commit/:nvidia
