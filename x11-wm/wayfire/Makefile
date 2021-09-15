@@ -1,7 +1,7 @@
 PORTNAME=	wayfire
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.7.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-wm
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -36,8 +36,15 @@ GH_ACCOUNT=	WayfireWM
 GH_TUPLE=	WayfireWM:wf-touch:8974eb0:wftouch/subprojects/wf-touch \
 		WayfireWM:wf-utils:889fdaf:wfutils/subprojects/wf-utils
 
-OPTIONS_DEFINE=	X11
-OPTIONS_DEFAULT=X11
+OPTIONS_DEFINE=	LTO X11
+OPTIONS_DEFAULT=LTO X11
+OPTIONS_EXCLUDE_powerpc64=	${"${/usr/bin/ld:L:tA}"==/usr/bin/ld.lld:?LTO:} # LLVM bug 47353
+
+LTO_MESON_TRUE=		b_lto
+.if exists(/usr/bin/ld.lld) && ${/usr/bin/ld:L:tA} != /usr/bin/ld.lld
+# --plugin isn't supported by old GNU ld.bfd in base
+LTO_LDFLAGS=		-fuse-ld=lld
+.endif
 
 X11_USE=		XORG=xcb
 X11_MESON_ENABLED=	xwayland
