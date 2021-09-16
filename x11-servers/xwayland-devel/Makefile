@@ -2,6 +2,7 @@ PORTNAME=	xwayland
 DISTVERSIONPREFIX=	xorg-server-
 DISTVERSION=	21.0.99.1-90
 DISTVERSIONSUFFIX=	-g6c1e6429b
+PORTREVISION=	1
 CATEGORIES=	x11-servers
 PKGNAMESUFFIX=	-devel
 
@@ -60,7 +61,15 @@ DEFAULT_FONTPATH_LIST= \
 	${FONTPATH_ROOT}/75dpi/ \
 	catalogue:${FONTPATHD}
 
-OPTIONS_DEFINE=	NVIDIA
+OPTIONS_DEFINE=	LTO NVIDIA
+OPTIONS_DEFAULT=LTO
+OPTIONS_EXCLUDE_powerpc64=	${"${/usr/bin/ld:L:tA}"==/usr/bin/ld.lld:?LTO:} # LLVM bug 47353
+
+LTO_MESON_TRUE=		b_lto
+.if exists(/usr/bin/ld.lld) && ${/usr/bin/ld:L:tA} != /usr/bin/ld.lld
+# --plugin isn't supported by old GNU ld.bfd in base
+LTO_LDFLAGS=		-fuse-ld=lld
+.endif
 
 NVIDIA_DESC=		EGLStream support for glamor on Xwayland
 NVIDIA_BUILD_DEPENDS=	egl-wayland>0:graphics/egl-wayland
