@@ -19,5 +19,6 @@ GH_PROJECT=	SPIRV-Tools
 GH_TUPLE=	KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-245-g1feaf44:headers/external/spirv-headers
 
 CMAKE_ON=	SPIRV_SKIP_TESTS
+CMAKE_OFF+=	SPIRV_TOOLS_BUILD_STATIC # https://github.com/KhronosGroup/SPIRV-Tools/issues/3909
 
 .include <bsd.port.mk>
