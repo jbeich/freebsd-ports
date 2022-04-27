@@ -1,0 +1,16 @@
+Revert https://github.com/intel/intel-graphics-compiler/commit/7e6b78d1ccf5
+due to https://github.com/intel/intel-graphics-compiler/issues/241
+
+--- external/SPIRV-Tools/CMakeLists.txt.orig	2022-04-08 22:09:56 UTC
++++ external/SPIRV-Tools/CMakeLists.txt
+@@ -33,8 +33,8 @@ if(IGC_OPTION__SPIRV_TOOLS_MODE STREQUAL PREBUILDS_MOD
+  set(IGC_BUILD__SPIRV-Tools_DIR "${SPIRV-Tools_ROOT_DIR}")
+ 
+  set(INCLUDE_DIRS_LIST "${SPIRV-Tools_ROOT_DIR}/include" "${SPIRV-Headers_INCLUDE_DIR}")
+- set_target_properties(SPIRV-Tools PROPERTIES INCLUDE_DIRECTORIES "${INCLUDE_DIRS_LIST}")
+- set(IGC_BUILD__PROJ__SPIRV-Tools SPIRV-Tools)
++ set_target_properties(SPIRV-Tools-static PROPERTIES INCLUDE_DIRECTORIES "${INCLUDE_DIRS_LIST}")
++ set(IGC_BUILD__PROJ__SPIRV-Tools SPIRV-Tools-static)
+ 
+ else() #By default use build from sources
+  message(STATUS "[SPIRV-Tools] : IGC_OPTION__SPIRV_TOOLS_MODE set to Source")

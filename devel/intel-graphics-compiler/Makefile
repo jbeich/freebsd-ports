@@ -29,10 +29,10 @@ USES=		bison cmake compiler:c++17-lang python:build
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 GH_ACCOUNT=	intel
-GH_TUPLE=	KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-123-g814e728:headers/../SPIRV-Headers \
-		KhronosGroup:SPIRV-Tools:v2021.4:tools/../SPIRV-Tools
+GH_TUPLE=	KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-123-g814e728:headers/../SPIRV-Headers
 CMAKE_ARGS=	-DCMAKE_PREFIX_PATH:PATH="${LOCALBASE}/${FLAVOR}" \
 		-DIGC_OPTION__LLVM_PREFERRED_VERSION:STRING="${FLAVOR:S/llvm//}" \
+		-DIGC_OPTION__SPIRV_TOOLS_MODE:STRING=Prebuilds \
 		-DIGC_OPTION__VC_INTRINSICS_MODE:STRING=Prebuilds
 CFLAGS+=	-Wno-macro-redefined # __fastcall
 PLIST_SUB=	ARCH_SUFX=${ARCH:S/aarch//:S/amd//:S/i386/32/:S/x86_//}
