@@ -1,6 +1,6 @@
 PORTNAME=	kwinft
 DISTVERSIONPREFIX=	${PORTNAME}@
-DISTVERSION=	5.24.1
+DISTVERSION=	5.25.0
 CATEGORIES=	x11-wm
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -8,8 +8,6 @@ COMMENT=	Wayland compositor and X11 window manager
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-BROKEN=		requires https://gitlab.com/kwinft/kwinft/-/commit/facc1040ff1e
 
 BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto
 LIB_DEPENDS=	libepoxy.so:graphics/libepoxy \
@@ -31,17 +29,17 @@ CONFLICTS_INSTALL=	plasma5-kwin # bin/kwin_wayland
 USES=		cmake:testing gl kde:5 pkgconfig python:run qt:5 shebangfix xorg
 USE_GITLAB=	yes
 USE_GL=		egl
-USE_KDE=	ecm_build auth completion config configwidgets \
+USE_KDE=	ecm_build auth config configwidgets \
 		coreaddons crash dbusaddons decoration globalaccel i18n \
 		idletime kcmutils kdeclarative kio kscreenlocker newstuff \
-		notifications package plasma-framework service textwidgets \
+		notifications package plasma-framework service \
 		widgetsaddons windowsystem xmlgui
 USE_LDCONFIG=	yes
 USE_QT=		qmake_build buildtools_build core dbus declarative gui \
 		multimedia_run quickcontrols2_run widgets x11extras
 USE_XORG=	pixman x11 xcb xi
-SHEBANG_FILES=	kconf_update/*.py kconf_update/*.pl
-GL_COMMIT=	022f157ce4bd14fbe069ab6fe41647b70d20f004
+SHEBANG_FILES=	effect/effects/*.py kconf_update/*.py kconf_update/*.pl
+GL_COMMIT=	a70cd81ac8f81189782831e52b6fec01aeeefdfd
 PLIST_SUB=	VERSION=${PORTVERSION}
 LDFLAGS+=	-Wl,--as-needed # GL, ICE/SM/Xext, epoll-shim, glib, intl, Qt5*, KF5*
 
