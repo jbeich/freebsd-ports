@@ -38,12 +38,12 @@ frame #5: 0x000000080104b4e5 libigdrcl.so`NEO::DrmMemoryManager::DrmMemoryManage
    60       }
    61   }
 
---- shared/source/os_interface/linux/drm_memory_manager.cpp.orig	2022-06-01 18:10:32 UTC
+--- shared/source/os_interface/linux/drm_memory_manager.cpp.orig	2022-07-13 16:55:27 UTC
 +++ shared/source/os_interface/linux/drm_memory_manager.cpp
-@@ -248,7 +248,17 @@ NEO::BufferObject *DrmMemoryManager::allocUserptr(uint
-     auto &drm = this->getDrm(rootDeviceIndex);
+@@ -249,7 +249,17 @@ NEO::BufferObject *DrmMemoryManager::allocUserptr(uint
+     auto ioctlHelper = drm.getIoctlHelper();
  
-     if (drm.ioctl(DrmIoctl::GemUserptr, &userptr) != 0) {
+     if (ioctlHelper->ioctl(DrmIoctl::GemUserptr, &userptr) != 0) {
 -        return nullptr;
 +        if (errno == ENODEV && userptr.flags == 0) {
 +            userptr.flags = I915_USERPTR_UNSYNCHRONIZED;
