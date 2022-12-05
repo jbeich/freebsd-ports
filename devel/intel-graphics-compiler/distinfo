@@ -3,3 +3,5 @@ SHA256 (intel-intel-graphics-compiler-igc-1.0.12504.5_GH0.tar.gz) = 7715e92889ad
 SIZE (intel-intel-graphics-compiler-igc-1.0.12504.5_GH0.tar.gz) = 8941924
 SHA256 (KhronosGroup-SPIRV-Headers-1.5.4.raytracing.fixed-123-g814e728_GH0.tar.gz) = e4880dccda018f63cdc684afd5e51972d8ad2e3f21e9bab346a865370ea2929e
 SIZE (KhronosGroup-SPIRV-Headers-1.5.4.raytracing.fixed-123-g814e728_GH0.tar.gz) = 416402
+SHA256 (d1761dfc3ca6.patch) = e067498a8235359ae2bb955e465faf34c64f35eb2168d67890a1dd2ecbcb7b18
+SIZE (d1761dfc3ca6.patch) = 4954

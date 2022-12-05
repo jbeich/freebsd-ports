@@ -4,6 +4,9 @@ DISTVERSION=	1.0.12504.5
 CATEGORIES=	devel
 PKGNAMESUFFIX=	-${FLAVOR}
 
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	d1761dfc3ca6.patch:-p1 # clang + llvm15
+
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Intel Graphics Compiler for OpenCL
 WWW=		https://01.org/compute-runtime
@@ -21,7 +24,7 @@ LIB_DEPENDS=	libLLVM-${FLAVOR:S/llvm//}.so:devel/${FLAVOR} \
 		libopencl-clang.so.${FLAVOR:S/llvm//}:devel/opencl-clang@${FLAVOR} \
 		libLLVMSPIRVLib.so.${FLAVOR:S/llvm//}:devel/spirv-llvm-translator@${FLAVOR}
 
-FLAVORS=	${14 13 12 11:L:S/^/llvm/}
+FLAVORS=	${15 14 13 12 11:L:S/^/llvm/}
 
 CONFLICTS_INSTALL=	${PORTNAME}-llvm*
 
