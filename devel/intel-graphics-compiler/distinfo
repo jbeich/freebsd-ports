@@ -1,6 +1,6 @@
-TIMESTAMP = 1668699544
-SHA256 (intel-intel-graphics-compiler-igc-1.0.12504.5_GH0.tar.gz) = 7715e92889ad95235af3c844058fdf614b0cb37c5ab072c0bc53b37f417caaf0
-SIZE (intel-intel-graphics-compiler-igc-1.0.12504.5_GH0.tar.gz) = 8941924
+TIMESTAMP = 1672145571
+SHA256 (intel-intel-graphics-compiler-igc-1.0.12812.19_GH0.tar.gz) = 1e0acb1162363751a58a4c674519a11e9f1a058d6ecaa07e743a3d209be87fc7
+SIZE (intel-intel-graphics-compiler-igc-1.0.12812.19_GH0.tar.gz) = 8793073
 SHA256 (KhronosGroup-SPIRV-Headers-1.5.4.raytracing.fixed-123-g814e728_GH0.tar.gz) = e4880dccda018f63cdc684afd5e51972d8ad2e3f21e9bab346a865370ea2929e
 SIZE (KhronosGroup-SPIRV-Headers-1.5.4.raytracing.fixed-123-g814e728_GH0.tar.gz) = 416402
 SHA256 (d1761dfc3ca6.patch) = e067498a8235359ae2bb955e465faf34c64f35eb2168d67890a1dd2ecbcb7b18

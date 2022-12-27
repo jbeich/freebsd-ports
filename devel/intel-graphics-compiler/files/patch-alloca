@@ -25,14 +25,3 @@ visa/iga/IGALibrary/strings.cpp:41:10: fatal error: 'alloca.h' file not found
  #include <ostream>
  #include <sstream>
  #include <string>
---- visa/iga/IGALibrary/strings.cpp.orig	2019-11-27 01:05:20 UTC
-+++ visa/iga/IGALibrary/strings.cpp
-@@ -38,7 +38,7 @@ using namespace iga;
- #include <Windows.h>
- #include <malloc.h> /* for alloca */
- #else
--#include <alloca.h> /* for alloca */
-+#include <stdlib.h> /* for alloca */
- #endif
- 
- std::string iga::format(const char *pat, ...)
