@@ -1,5 +1,5 @@
 PORTNAME=	renpy
-PORTVERSION=	7.4.11
+PORTVERSION=	7.5.0
 DISTVERSIONSUFFIX=-sdk
 PORTREVISION=	2
 CATEGORIES=	games devel
@@ -20,13 +20,15 @@ LICENSE_PERMS_DejaVu=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 DEPRECATED=	Uses deprecated version of python
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}future>0:devel/py-future@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}game_sdl2>0:devel/py-game_sdl2@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}game_sdl2>0:devel/py-game_sdl2@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}typing>0:devel/py-typing@${PY_FLAVOR}
 LIB_DEPENDS=	libfribidi.so:converters/fribidi \
 		libpng.so:graphics/png \
 		libavcodec.so:multimedia/ffmpeg \
 		libfreetype.so:print/freetype2
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}future>0:devel/py-future@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}game_sdl2>0:devel/py-game_sdl2@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}game_sdl2>0:devel/py-game_sdl2@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}typing>0:devel/py-typing@${PY_FLAVOR}
 
 # Upstream tends to reroll distfiles before moving under /release/
 PORTSCOUT=	site:http://www.renpy.org/dl/release/
@@ -36,7 +38,7 @@ USE_PYTHON=	autoplist distutils cython
 USE_SDL=	sdl2
 EXCLUDE=	fribidi-src gen 'module/*.py[co]' 'renpy/*.py[co]'
 EXTRACT_AFTER_ARGS=${EXCLUDE:S,^,--exclude ,}
-SHEBANG_FILES=	renpy.py launcher/game/tkaskdir.py
+SHEBANG_FILES=	renpy.py
 TARGET_ORDER_OVERRIDE=610:fix-shebang
 BUILD_WRKSRC=	${WRKSRC}/module
 INSTALL_WRKSRC=	${BUILD_WRKSRC}

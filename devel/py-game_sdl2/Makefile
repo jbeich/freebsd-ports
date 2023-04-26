@@ -1,6 +1,5 @@
 PORTNAME=	game_sdl2
-PORTVERSION=	7.4.11
-PORTREVISION=	2
+PORTVERSION=	7.5.0
 CATEGORIES=	devel python
 MASTER_SITES=	http://www.renpy.org/dl/${PORTVERSION}/ \
 		GENTOO

@@ -17,9 +17,9 @@ gen/_renpybidi.c:564:10: fatal error: 'fribidi.h' file not found
  
  #include <stdlib.h>
  
---- module/setup.py.orig	2018-07-11 04:29:32 UTC
+--- module/setup.py.orig	2022-04-19 04:43:32 UTC
 +++ module/setup.py
-@@ -92,6 +92,7 @@ has_avresample = library("avresample", optional=True)
+@@ -96,6 +96,7 @@ library("freetype")
  has_swresample = library("swresample", optional=True)
  has_swscale = library("swscale", optional=True)
  library("freetype")
@@ -27,7 +27,7 @@ gen/_renpybidi.c:564:10: fatal error: 'fribidi.h' file not found
  library("z")
  has_libglew = library("GLEW", optional=True)
  has_libglew32 = library("glew32", optional=True)
-@@ -105,6 +106,16 @@ else:
+@@ -107,6 +108,16 @@ else:
      sdl = [ 'SDL2' ]
      png = 'png'
  
@@ -41,10 +41,10 @@ gen/_renpybidi.c:564:10: fatal error: 'fribidi.h' file not found
 +    except:
 +        pass
 +
- steam_sdk = os.environ.get("RENPY_STEAM_SDK", None)
- steam_platform = os.environ.get("RENPY_STEAM_PLATFORM", "")
- 
-@@ -134,11 +145,12 @@ renpybidicore.c
+ cubism = os.environ.get("CUBISM", None)
+ if cubism:
+     setuplib.include_dirs.append("{}/Core/include".format(cubism))
+@@ -133,11 +144,12 @@ cython(
  """.split()
  cython(
      "_renpybidi",
