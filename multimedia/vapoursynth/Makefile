@@ -1,6 +1,6 @@
 PORTNAME=	vapoursynth
-DISTVERSION=	R54
-PORTREVISION=	4
+DISTVERSION=	R55
+DISTVERSIONSUFFIX=	-API3
 CATEGORIES=	multimedia
 
 MAINTAINER=	ports@FreeBSD.org
@@ -18,7 +18,7 @@ USE_LDCONFIG=	yes
 DATADIR=	${PREFIX}/lib/vapoursynth
 
 OPTIONS_DEFINE=	DEBUG DOCS FRAME_GUARD
-OPTIONS_DEFAULT=${OPTIONS_GROUP_COMPS} ${OPTIONS_GROUP_PLUGINS}
+OPTIONS_DEFAULT=${OPTIONS_GROUP_COMPS}
 OPTIONS_SUB=	yes
 
 OPTIONS_DEFINE_amd64=	SIMD
@@ -28,15 +28,13 @@ OPTIONS_DEFAULT_amd64=	SIMD
 OPTIONS_GROUP=		COMPS PLUGINS
 COMPS_DESC=		Components
 OPTIONS_GROUP_COMPS=	CORE PYTHON VSPIPE VSSCRIPT
-PLUGINS_DESC=		Plugins
-OPTIONS_GROUP_PLUGINS=	ASS EEDI3 IMAGEMAGICK MISCFILTERS MORPHO TESSERACT \
-			REMOVEGRAIN VINVERSE VIVTC
 
 # General options
 
 DEBUG_CONFIGURE_ENABLE=		debug
 
-DOCS_BUILD_DEPENDS=		sphinx-build:textproc/py-sphinx
+DOCS_BUILD_DEPENDS=		sphinx-build:textproc/py-sphinx \
+				${PYTHON_PKGNAMEPREFIX}sphinx_rtd_theme>0:textproc/py-sphinx_rtd_theme@${PY_FLAVOR}
 DOCS_USES=			makeinfo
 DOCS_INFO=			VapourSynth
 DOCS_PORTDOCS=			*
@@ -44,7 +42,7 @@ DOCS_PORTDOCS=			*
 FRAME_GUARD_DESC=		Check integrity after each filter
 FRAME_GUARD_CONFIGURE_ENABLE=	guard-pattern
 
-# VSSCRIPT or REMOVEGRAIN
+# VSSCRIPT
 SIMD_BUILD_DEPENDS=		nasm:devel/nasm
 SIMD_CONFIGURE_ENABLE=		x86-asm
 
@@ -70,39 +68,6 @@ VSPIPE_IMPLIES=			VSSCRIPT
 VSSCRIPT_DESC=			Scripting library
 VSSCRIPT_USES=			compiler:c++11-lib python:3.3+
 VSSCRIPT_CONFIGURE_ENABLE=	vsscript
-
-# PLUGINS group
-
-ASS_DESC=			Subtitles rendering via libass
-ASS_LIB_DEPENDS=		libavcodec.so:multimedia/ffmpeg \
-				libass.so:multimedia/libass
-ASS_USES=			iconv
-ASS_CONFIGURE_ENABLE=		subtext
-
-EEDI3_DESC=			Very slow edge directed interpolation
-EEDI3_CONFIGURE_ENABLE=		eedi3
-
-IMAGEMAGICK_USES=		compiler:c++11-lib magick:7
-IMAGEMAGICK_CONFIGURE_ENABLE=	imwri
-
-TESSERACT_DESC=			Optical Character Recognition via Tesseract
-TESSERACT_LIB_DEPENDS=		libtesseract.so:graphics/tesseract
-TESSERACT_CONFIGURE_ENABLE=	ocr
-
-MISCFILTERS_DESC=		Miscellaneous filters
-MISCFILTERS_CONFIGURE_ENABLE=	miscfilters
-
-MORPHO_DESC=			Morphological filter
-MORPHO_CONFIGURE_ENABLE=	morpho
-
-REMOVEGRAIN_DESC=		3x3 median and convolution denoising
-REMOVEGRAIN_CONFIGURE_ENABLE=	removegrain
-
-VINVERSE_DESC=			Remove residual combing
-VINVERSE_CONFIGURE_ENABLE=	vinverse
-
-VIVTC_DESC=			Field matching, inverse telecine and decimation
-VIVTC_CONFIGURE_ENABLE=		vivtc
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/x86_64/&|amd64/' \
